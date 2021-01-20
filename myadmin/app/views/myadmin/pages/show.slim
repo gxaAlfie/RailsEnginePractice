@@ -1,0 +1,8 @@
+.card
+  .card-header.bg-primary = @facade.resource.display_name
+  .card-body
+    - @facade.visible_attributes.each do |attribute|
+      .d-flex
+        b style='min-width: 150px;'
+          = I18n.t("attributes.#{@facade.resource.model_name.i18n_key}.#{attribute}")
+        span = @facade.resource.send("#{attribute}")

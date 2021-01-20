@@ -1,0 +1,20 @@
+table.table
+  thead
+    - @facade.resource_attributes.each do |attribute|
+      th = I18n.t("attributes.#{@facade.klass.model_name.i18n_key}.#{attribute}")
+
+    - @facade.resource_associations.each do |associated_model|
+      th = I18n.t("activerecord.models.#{associated_model}.one")
+    th = ""
+
+  tbody
+    - @facade.resources.each do |resource|
+      tr
+        - @facade.resource_attributes.each do |attribute|
+          td = resource.send("#{attribute}")
+        - @facade.resource_associations.each do |associated_model|
+          td = link_to resource.send("#{associated_model}").display_name, main_app.send("admin_#{associated_model.to_s.camelize.constantize.model_name.singular_route_key}_path", resource.send("#{associated_model}"))
+        td
+          = link_to 'View ', main_app.send("admin_#{resource.model_name.singular_route_key}_path", resource)
+          = link_to 'Edit ', main_app.send("edit_admin_#{resource.model_name.singular_route_key}_path", resource)
+          = link_to 'Delete', main_app.send("admin_#{resource.model_name.singular_route_key}_path", resource), method: :delete, data: { confirm: 'Are you sure you want to delete this item?' }

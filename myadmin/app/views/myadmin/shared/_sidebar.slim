@@ -1,0 +1,10 @@
+.col-md-2.sidebar
+  .d-flex.flex-column
+    .pt-3.pd-3
+      h3 = link_to Rails.application.class.parent.name, main_app.root_path, class: 'text-decoration-none text-white'
+    hr.my-3
+    nav.nav.nav-pills.flex-column
+      = link_to 'Dashboard', myadmin.root_path, class: "nav-link #{'active' if current_page?(myadmin.root_path)}"
+      - ApplicationRecord.subclasses.each do |klass|
+        - route_path = main_app.send("admin_#{klass.model_name.route_key}_path")
+        = link_to I18n.t("activerecord.models.#{klass.model_name.i18n_key}.other"), main_app.send("admin_#{klass.model_name.route_key}_path"), class: "nav-link #{'active' if current_page?(route_path)}"

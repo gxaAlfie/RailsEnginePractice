@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      article:
+        one: Article
+        other: Articles
+      school:
+        one: School
+        other: Schools
+
+  common_attributes: &common_attributes
+    id: 'ID'
+    created_at: 'Created At'
+    updated_at: 'Updated At'
+
+  attributes:
+    article:
+      <<: *common_attributes
+      title: 'Title'
+      description: 'Description'
+
+    school:
+      <<: *common_attributes
+      name: 'Name'

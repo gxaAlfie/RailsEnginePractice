@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title = Rails.application.class.parent.name
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'myadmin/application', media: 'all'
+    = javascript_include_tag 'myadmin/application'
+  body
+    .d-flex.main-container
+      = render 'myadmin/shared/sidebar'
+      .col-md-10.content
+        .container
+          = yield

@@ -1,0 +1,18 @@
+.sidebar {
+  background-color: #123559;
+  color: white;
+  padding-right: 0px;
+  padding-left: 0px;
+  border-right: 1px solid #123559;
+  text-align: center;
+
+  .nav-link {
+    border-radius: 0px;
+    color: white;
+
+    &:hover {
+      background: white;
+      color: #123559;
+    }
+  }
+}
